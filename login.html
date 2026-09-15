@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Login | BioFootprint</title>
+    <title>Create Profile | AI Footprint</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -52,7 +52,7 @@
         <div class="flex justify-between items-center px-8 py-4 max-w-screen-xl mx-auto">
             <a href="index.html" class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary-fixed-dim" data-icon="energy_savings_leaf">energy_savings_leaf</span>
-                <span class="text-xl font-bold text-emerald-900 font-headline tracking-tight">BioFootprint</span>
+                <span class="text-xl font-bold text-emerald-900 font-headline tracking-tight">AI Footprint</span>
             </a>
         </div>
     </header>
@@ -61,30 +61,19 @@
     
     <div class="max-w-md w-full glass-card p-10 rounded-xl shadow-sm border border-outline-variant/15 space-y-8 mt-16">
         <div class="text-center space-y-2">
-            <h1 class="text-3xl font-headline font-extrabold text-primary">Welcome Back</h1>
-            <p class="text-secondary text-sm">Access your environmental dashboard</p>
+            <h1 class="text-3xl font-headline font-extrabold text-primary">Create Local Profile</h1>
+            <p class="text-secondary text-sm">Your name is stored locally on this browser to access your calculation history.</p>
         </div>
         
         <form onsubmit="handleAuth(event)" class="space-y-6">
             <div class="space-y-2">
-                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Name</label>
-                <input id="auth-name" type="text" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
-            </div>
-            <div class="space-y-2">
-                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Email</label>
-                <input id="auth-email" type="email" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
-            </div>
-            <div class="space-y-2">
-                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Password</label>
-                <input id="auth-pass" type="password" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
+                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Your Name</label>
+                <input id="auth-name" type="text" required placeholder="Enter your name" class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
             </div>
             
-            <div class="flex gap-4 pt-4">
+            <div class="pt-2">
                 <button type="submit" class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-3 rounded-lg font-headline font-bold text-sm shadow hover:opacity-95 active:scale-[0.98] transition-all">
-                    Login
-                </button>
-                <button type="submit" class="w-full bg-surface-container-high text-primary py-3 rounded-lg font-headline font-bold text-sm shadow-sm hover:bg-surface-container-highest active:scale-[0.98] transition-all">
-                    Sign Up
+                    Continue
                 </button>
             </div>
         </form>
