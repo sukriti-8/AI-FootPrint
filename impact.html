@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BioFootprint | Impact Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#0d1c2f",
+                        "primary": "#012d1d",
+                        "on-secondary-fixed-variant": "#344c3e",
+                        "inverse-on-surface": "#ebf1ff",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-container": "#244141",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#dde9ff",
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d5e3fd",
+                        "inverse-primary": "#a5d0b9",
+                        "error": "#ba1a1a",
+                        "outline": "#717973",
+                        "secondary-fixed": "#cee9d6",
+                        "on-secondary-fixed": "#082014",
+                        "on-primary": "#ffffff",
+                        "secondary": "#4c6455",
+                        "primary-fixed": "#c1ecd4",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#0c2b2b",
+                        "surface-tint": "#3f6653",
+                        "surface-dim": "#ccdbf4",
+                        "tertiary-fixed-dim": "#adcccc",
+                        "surface-variant": "#d5e3fd",
+                        "secondary-fixed-dim": "#b2cdbb",
+                        "on-primary-fixed": "#002114",
+                        "on-surface-variant": "#414844",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1b4332",
+                        "on-secondary-container": "#506859",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "on-tertiary-fixed-variant": "#2f4c4c",
+                        "inverse-surface": "#233144",
+                        "secondary-container": "#cbe6d4",
+                        "on-tertiary-fixed": "#012020",
+                        "on-surface": "#0d1c2f",
+                        "on-tertiary-container": "#8eadac",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#c9e9e8",
+                        "outline-variant": "#c1c8c2",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "on-primary-container": "#86af99",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e6eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .impact-gradient-low { background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); }
+        .impact-gradient-medium { background: linear-gradient(135deg, #856404 0%, #ffc107 100%); }
+        .impact-gradient-high { background: linear-gradient(135deg, #721c24 0%, #ba1a1a 100%); }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full bg-emerald-50/80 dark:bg-slate-950/80 backdrop-blur-md z-50">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-xl mx-auto">
+<div class="text-xl font-bold text-emerald-900 dark:text-emerald-400 font-headline tracking-tight">
+                BioFootprint
+            </div>
+<div class="flex items-center gap-4">
+<button onclick="handleProfileClick()" class="material-symbols-outlined text-emerald-900 dark:text-emerald-500 hover:bg-emerald-100/50 dark:hover:bg-emerald-900/30 transition-colors p-2 rounded-full" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Main Content: Impact Analysis -->
+<main class="flex-grow flex items-center justify-center px-6 pt-24 pb-12">
+<div class="max-w-2xl w-full text-center">
+<div id="impact-container"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const energy = parseFloat(localStorage.getItem('bf_energy')) || 0;
+        
+        const container = document.getElementById('impact-container');
+        
+        let impactLevel = "";
+        let colorTheme = "";
+        let icon = "";
+        let message = "";
+        let bgClass = "";
+        let borderColor = "";
+        
+        if (energy < 0.1) {
+            impactLevel = "Low";
+            colorTheme = "text-primary";
+            icon = "eco";
+            message = '"Your AI footprint is minimal. Great job maintaining sustainable digital habits."';
+            bgClass = "bg-primary/5";
+            borderColor = "border-primary/10";
+        } else if (energy < 0.5) {
+            impactLevel = "Medium";
+            colorTheme = "text-orange-500";
+            icon = "energy_savings_leaf";
+            message = '"Your AI usage is moderate. Consider optimizing prompts to further reduce your footprint."';
+            bgClass = "bg-orange-500/5";
+            borderColor = "border-orange-500/10";
+        } else {
+            impactLevel = "High";
+            colorTheme = "text-error";
+            icon = "warning";
+            message = '"Your AI usage is significantly harming environmental sustainability. Immediate reduction is recommended."';
+            bgClass = "bg-error/5";
+            borderColor = "border-error/10";
+        }
+        
+        container.innerHTML = `
+            <div class="relative mb-12">
+            <div class="inline-flex flex-col items-center justify-center p-12 rounded-full aspect-square border-4 ${borderColor} bg-surface-container-low shadow-xl">
+            <span class="material-symbols-outlined text-6xl ${colorTheme} mb-4" style="font-variation-settings: 'FILL' 1;">${icon}</span>
+            <h1 class="font-headline text-4xl font-extrabold tracking-tight text-on-surface mb-2 uppercase">${impactLevel}</h1>
+            <p class="font-label text-sm uppercase tracking-widest text-on-surface-variant font-semibold">Impact Level</p>
+            </div>
+            <!-- Background Decorative Element -->
+            <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 ${bgClass} blur-3xl rounded-full"></div>
+            </div>
+            <!-- Feedback Message -->
+            <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm mb-12 border border-outline-variant/15">
+            <p class="font-headline text-xl text-on-surface-variant leading-relaxed">
+                                ${message}
+                            </p>
+            </div>
+        `;
+    });
+
+    function handleProfileClick() {
+        if (localStorage.getItem('bf_user')) {
+            window.location.href = 'dashboard.html';
+        } else {
+            window.location.href = 'login.html';
+        }
+    }
+</script>
+<!-- Action Cluster -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button onclick="window.location.href='index.html'" class="group flex items-center gap-2 px-8 py-3 bg-primary-container text-on-primary rounded-xl font-semibold shadow-md hover:bg-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-xl" data-icon="refresh">refresh</span>
+                    Restart Analysis
+                </button>
+<button onclick="window.history.back()" class="group flex items-center gap-2 px-8 py-3 bg-surface-container-high text-primary rounded-xl font-semibold hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined text-xl" data-icon="arrow_back">arrow_back</span>
+                    Go Back
+                </button>
+</div>
+<!-- Environmental Context Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-20 text-left">
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-3" data-icon="bolt">bolt</span>
+<h3 class="font-headline font-bold text-sm mb-1">Energy Draw</h3>
+<p class="text-xs text-on-surface-variant">Estimated grid consumption per 1k tokens generated.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-3" data-icon="water_drop">water_drop</span>
+<h3 class="font-headline font-bold text-sm mb-1">Cooling Cost</h3>
+<p class="text-xs text-on-surface-variant">Freshwater required for server thermal management.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-3" data-icon="co2">co2</span>
+<h3 class="font-headline font-bold text-sm mb-1">CO2 Equiv.</h3>
+<p class="text-xs text-on-surface-variant">Carbon intensity based on regional data centers.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-emerald-50 dark:bg-slate-950 border-t border-emerald-900/5 dark:border-emerald-100/5">
+<div class="flex flex-col items-center gap-6 w-full px-8">
+<div class="text-lg font-bold text-emerald-800">BioFootprint</div>
+<div class="flex gap-8">
+<a class="text-emerald-900/50 dark:text-emerald-500/50 font-inter body-lg hover:text-emerald-700 dark:hover:text-emerald-300 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-emerald-900/50 dark:text-emerald-500/50 font-inter body-lg hover:text-emerald-700 dark:hover:text-emerald-300 transition-opacity" href="#">Terms of Service</a>
+<a class="text-emerald-900/50 dark:text-emerald-500/50 font-inter body-lg hover:text-emerald-700 dark:hover:text-emerald-300 transition-opacity" href="#">Methodology</a>
+</div>
+<p class="text-emerald-900/50 dark:text-emerald-500/50 font-inter body-lg text-center">
+                © 2024 Bio-Technical Nexus. All rights reserved.
+            </p>
+</div>
+</footer>
+<!-- Decorative Organic Background Element -->
+<div class="fixed bottom-0 right-0 -z-20 opacity-10 pointer-events-none">
+<img alt="" class="w-[40vw] max-w-lg" data-alt="abstract close-up of translucent green leaf veins with macro details and soft cinematic lighting against a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6r5pb94tIZBv4xFH_ciWxDZBKtyhtlh77vo-IdyAAKk-VmUjSis6UXtWDsP-FdbR6xUNBPO3PhTlf1QD-pGkENlxcJIvkjKtwxgJE-qnnXKrd0vOdYv9xpu--fsS1Sbp1AgB2okosY8auYLGYitP4WEkhbQ-G9-w1uyct_A3anC_OIqtbOq1PPN0eN_w7ODxYJkIhMAcmOsq8aBbAmYd92AHd8g2xNsXeNAhESR_9j7m1mEeo5DYCfzrmkuNFF9mlTcubWJ4f7Qo"/>
+</div>
+</body></html>

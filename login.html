@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login | BioFootprint</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "primary": "#012d1d",
+                        "secondary": "#4c6455",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0d1c2f",
+                        "on-surface-variant": "#414844",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e6eeff",
+                        "surface-container-high": "#dde9ff",
+                        "surface-container-highest": "#d5e3fd",
+                        "primary-container": "#1b4332",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#cbe6d4",
+                        "on-secondary-container": "#506859",
+                        "outline-variant": "#c1c8c2",
+                        "primary-fixed": "#c1ecd4",
+                        "primary-fixed-dim": "#a5d0b9"
+                },
+                "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                }
+              },
+            }
+          }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-center relative px-6">
+    <!-- Header simple -->
+    <header class="fixed top-0 w-full bg-emerald-50/80 backdrop-blur-md z-50">
+        <div class="flex justify-between items-center px-8 py-4 max-w-screen-xl mx-auto">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary-fixed-dim" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+                <span class="text-xl font-bold text-emerald-900 font-headline tracking-tight">BioFootprint</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-fixed opacity-10 blur-[120px] rounded-full -z-10"></div>
+    
+    <div class="max-w-md w-full glass-card p-10 rounded-xl shadow-sm border border-outline-variant/15 space-y-8 mt-16">
+        <div class="text-center space-y-2">
+            <h1 class="text-3xl font-headline font-extrabold text-primary">Welcome Back</h1>
+            <p class="text-secondary text-sm">Access your environmental dashboard</p>
+        </div>
+        
+        <form onsubmit="handleAuth(event)" class="space-y-6">
+            <div class="space-y-2">
+                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Name</label>
+                <input id="auth-name" type="text" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
+            </div>
+            <div class="space-y-2">
+                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Email</label>
+                <input id="auth-email" type="email" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
+            </div>
+            <div class="space-y-2">
+                <label class="font-headline font-bold text-primary text-sm flex items-center gap-2">Password</label>
+                <input id="auth-pass" type="password" required class="w-full bg-surface-container-low border-none rounded-lg p-3 font-semibold text-primary focus:ring-0 placeholder:text-on-surface-variant/30 transition-all"/>
+            </div>
+            
+            <div class="flex gap-4 pt-4">
+                <button type="submit" class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-3 rounded-lg font-headline font-bold text-sm shadow hover:opacity-95 active:scale-[0.98] transition-all">
+                    Login
+                </button>
+                <button type="submit" class="w-full bg-surface-container-high text-primary py-3 rounded-lg font-headline font-bold text-sm shadow-sm hover:bg-surface-container-highest active:scale-[0.98] transition-all">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function handleAuth(event) {
+            event.preventDefault();
+            const name = document.getElementById('auth-name').value;
+            if(name) {
+                localStorage.setItem('bf_user', name);
+                window.location.href = 'dashboard.html';
+            }
+        }
+    </script>
+</body>
+</html>
