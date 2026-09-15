@@ -1,16 +1,16 @@
 # 🌱 AI Footprint
 
-> A web-based tool that estimates the environmental footprint of everyday AI usage through a simple, user-friendly interface.
+> A web-based AI footprint calculator that estimates the environmental impact of everyday AI usage.
 
 🌐 **Live Demo:** https://ai-foot-print-calculator.web.app/
 
----
 
-## Overview
 
-AI Footprint is a lightweight web application that helps users understand the potential environmental impact of their AI usage.
+##  Overview
 
-Users enter the number of **text and image prompts** they use, and the application estimates:
+AI Footprint is a lightweight web application designed to help users understand the potential environmental impact associated with their AI usage.
+
+Users enter the number of **text and image prompts** they use, and the application provides estimates for:
 
 - ⚡ Energy consumption
 - 🌍 Carbon emissions
@@ -18,24 +18,43 @@ Users enter the number of **text and image prompts** they use, and the applicati
 - 📊 Estimated impact level
 - 📈 Previous calculation history
 
-The project focuses on turning an abstract concept — the environmental cost of AI usage — into simple metrics that users can understand.
+The project turns an abstract concept — the environmental cost of AI usage — into simple and understandable metrics.
 
 ---
 
-## Why I Built This
+## Problem Statement
 
-Generative AI is becoming part of everyday digital activity, but users rarely have a simple way to understand the resource impact associated with that usage.
+The increasing use of Generative AI involves computational resources that consume energy and contribute to environmental impact.
 
-AI Footprint was built as a **Semester 2 project** to explore how a web application can translate user activity into understandable environmental estimates.
+However, users often have little awareness of how their everyday AI usage can translate into resource consumption.
+
+AI Footprint aims to provide a simple and accessible way for users to estimate the potential environmental impact associated with their AI activity.
 
 ---
 
-## Key Features
+## Objective
 
-### ⚡ AI Usage Calculator
-Users can enter their daily number of text and image prompts to calculate an estimated footprint.
+The main objectives of AI Footprint are:
+
+- Allow users to enter their daily AI activity.
+- Estimate energy consumption from text and image prompts.
+- Calculate estimated carbon emissions.
+- Calculate estimated water usage.
+- Provide an easy-to-understand impact analysis.
+- Maintain a history of previous calculations.
+- Provide a local user profile and dashboard.
+- Present environmental metrics through a simple and user-friendly interface.
+
+---
+
+##  Key Features
+
+### ⚡ AI Footprint Calculator
+
+Users can enter their daily number of text and image prompts to calculate their estimated environmental footprint.
 
 ### 🌱 Environmental Metrics
+
 The application estimates:
 
 - Energy consumption
@@ -43,18 +62,85 @@ The application estimates:
 - Water usage
 
 ### 📊 Impact Analysis
-The estimated energy usage is mapped to project-defined **Low, Medium, or High** impact levels.
+
+The estimated energy usage is categorized into:
+
+- Low
+- Medium
+- High
+
+These categories use project-defined thresholds to provide an easy-to-understand interpretation of the estimated usage.
 
 ### 👤 Local User Profile
-Users can create a local profile to access their calculation history.
 
-### 📈 Activity History
-Previous calculations are stored in the browser and displayed through a dashboard.
+Users can create a local profile using their name.
+
+The profile is stored in the browser using `LocalStorage`.
+
+### 📈 Calculation History
+
+Previous footprint calculations are stored locally and displayed through the dashboard.
+
+### 📊 Dashboard
+
+The dashboard provides an overview of previous calculations and activity history.
 
 ### 🔥 Live Deployment
-The application is deployed and accessible through Firebase Hosting.
+
+The application is deployed using Firebase Hosting and is accessible online.
 
 ---
+## Calculation Methodology
+
+AI Footprint uses a simplified project-level estimation model to demonstrate the potential environmental impact of AI usage.
+
+Energy Estimation
+Energy = (Text Prompts × 0.002) + (Image Prompts × 0.02)
+
+Carbon Emissions
+Carbon Emissions = Energy × 0.5
+
+Water Usage
+Water Usage = Energy × 1.8
+
+These values are used as simplified estimation factors for this project and are intended to provide an approximate representation rather than exact real-world measurements.
+
+## Actual AI environmental impact can vary depending on factors such as:
+
+AI model architecture
+Hardware used
+Data-center efficiency
+Location
+Electricity sources
+Workload and usage patterns
+
+## Data Handling
+
+AI Footprint uses browser LocalStorage for storing:
+                                                    User profile information
+                                                    Current calculation results
+                                                    Calculation history
+
+No external database is currently used for storing user calculation data.
+
+Firebase is used for hosting and deployment of the web application.
+
+This keeps the application lightweight and demonstrates client-side data persistence without requiring a backend database.
+
+##What I Learned
+
+##Building AI Footprint helped me strengthen my understanding of:
+
+Frontend development using HTML, CSS, and JavaScript
+Client-side state and data persistence using LocalStorage
+Designing a multi-page web application
+Implementing calculation logic from defined assumptions
+Building responsive and user-friendly interfaces
+Deploying a web application using Firebase Hosting
+Using Git and GitHub for version control
+Testing and debugging a deployed web application
+Understanding how AI usage can be represented through environmental metrics
+Clearly communicating technical assumptions and project limitations
 
 ## How It Works
 
@@ -71,4 +157,6 @@ Results Dashboard
     ↓
 Impact Analysis
     ↓
-Local History
+Local Calculation History
+
+
